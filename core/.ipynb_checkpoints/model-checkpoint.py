@@ -59,8 +59,8 @@ class SnippetPolicyNetwork(nn.Module):
             if max_length < x.shape[0]:
                 max_length = x.shape[0]
         
-        tau_list = np.zeros(X.shape[0], dtype=int)
-        state_list = np.zeros(X.shape[0], dtype=int)
+        tau_list = np.zeros(X.shape[0], dtype=int) # maintain stopping point for each sample in a batch
+        state_list = np.zeros(X.shape[0], dtype=int) # record which snippet array already stopped in a batch
         
         log_pi = []
         baselines = []
@@ -97,14 +97,11 @@ class SnippetPolicyNetwork(nn.Module):
             
             H_t = hidden[0][-1]
 
-            rate = t > self._LIMIT if self._LIMIT else t
+            rate = self._LIMIT if t > self._LIMIT else t
             
             # --- Controlling Agent ---
-            if self.training:
-                a_t, p_t, w_t, probs = self.Controller(H_t, self._ALPHA, self._EPISOLON) # Calculate if it needs to output
-            else:
-                a_t, p_t, w_t, probs = self.Controller(H_t, self._ALPHA * rate, self._EPISOLON) # Calculate if it needs to output
-            
+            a_t, p_t, w_t, probs = self.Controller(H_t, self._ALPHA * rate, self._EPISOLON) # Calculate if it needs to output
+                            
             # --- Baseline Network ---
             b_t = self.BaselineNetwork(H_t)
                         
@@ -122,11 +119,13 @@ class SnippetPolicyNetwork(nn.Module):
                     
                     if(a == 0 and tau_list[idx] < X[idx].shape[0]-1):
                         tau_list[idx]+=1
-                    else:
+                    else: 
                         state_list[idx] = 1
+                        #record the stopping status of a snippet array in the batch
                         
                 if (np.mean(state_list)>=1): break 
-                # break condition in training phase, when all snippet array are stop, the program will break
+                # break condition in training phase
+                # when all snippet array are stopped, the program will break
                     
             else:
                                 

@@ -171,7 +171,7 @@ def execute(config, training_data, training_label, testing_data, testing_label,
         
         f1 = np.mean(f1_score(testing_true, testing_pred, average=None))
         
-        recall = recall_score(testing_true, testing_pred, average='macro')
+        recall = recall_score(testing_true, testing_pred, average='macro', zero_division=1)
         
         precision = precision_score(testing_true, testing_pred, average='macro')
         
@@ -200,7 +200,7 @@ if __name__ == "__main__":
 
     os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
 
-    os.environ["CUDA_VISIBLE_DEVICES"] = "0"
+    os.environ["CUDA_VISIBLE_DEVICES"] = "7"
 
     num_fold = 10
     
