@@ -100,8 +100,12 @@ class SnippetPolicyNetwork(nn.Module):
             rate = self._LIMIT if t > self._LIMIT else t
             
             # --- Controlling Agent ---
-            a_t, p_t, w_t, probs = self.Controller(H_t, self._ALPHA * rate, self._EPISOLON) # Calculate if it needs to output
-                            
+            if self.training:
+                #set different alpha can affect the performance
+                a_t, p_t, w_t, probs = self.Controller(H_t, self._ALPHA, self._EPISOLON) # Calculate if it needs to output
+            else:
+                a_t, p_t, w_t, probs = self.Controller(H_t, self._ALPHA * rate, self._EPISOLON) # Calculate if it needs to output
+            
             # --- Baseline Network ---
             b_t = self.BaselineNetwork(H_t)
                         

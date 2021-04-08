@@ -213,7 +213,7 @@ if __name__ == "__main__":
                         beta=0.0001, 
                         batch_size=32, 
                         epoch_size=100,
-                        snippet_name = "filter_116_binorm_1000.pickle")
+                        snippet_name = "christov_checkup.pickle")
 
         input_folder = os.path.join(config.root_dir,
                                     config.data_dir,
@@ -269,4 +269,4 @@ if __name__ == "__main__":
                                testing_length = testing_length,
                                wandb=None)
         
-        #torch.save(result_model.state_dict(), model_path+"/model.pt")
+        torch.save(result_model.state_dict(), model_path+"/model.pt")

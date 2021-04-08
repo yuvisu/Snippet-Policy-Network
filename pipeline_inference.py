@@ -35,7 +35,7 @@ os.environ["CUDA_VISIBLE_DEVICES"] = "1"
 
 #load raw data
 
-config = Config(model_name="FIT-SPN-E0.01-B0.0001-(2144)", dataset_name = "ICBEB", segmenter = "christov")
+config = Config(model_name="SPN-B0.0001", dataset_name = "ICBEB", segmenter = "christov")
 
 raw_input_path = os.path.join(config.root_dir,
                               config.data_dir,
@@ -85,7 +85,7 @@ for fold in range(1, num_fold+1):
     
     print(model_path)
 
-    model.load_state_dict(torch.load(model_path+"/model-best.pt"))
+    model.load_state_dict(torch.load(model_path+"/model.pt"))
 
     model.cuda()
 
