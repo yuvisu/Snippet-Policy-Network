@@ -12,3 +12,4 @@ unzip TrainingSet2.zip
 unzip TrainingSet3.zip
 cd ..
 python util/convert_ICBEB.py
+cp data/scp_statements.csv data/ICBEB/
