@@ -35,7 +35,7 @@ os.environ["CUDA_VISIBLE_DEVICES"] = "1"
 
 #load raw data
 
-config = Config(model_name="SPN-B0.0001", dataset_name = "ICBEB", segmenter = "christov")
+config = Config(model_name="FIT-SPN-E0.01-B0.0001-(2144)", dataset_name = "ICBEB", segmenter = "christov")
 
 raw_input_path = os.path.join(config.root_dir,
                               config.data_dir,
@@ -48,13 +48,15 @@ raw_tmp_path = os.path.join(config.root_dir,
 
 raw_data, raw_Y, raw_labels, classes = uio.load_formmated_raw_data(raw_input_path, raw_tmp_path)
 
+
+
 # +
 num_fold = 10
 
 for fold in range(1, num_fold+1):
     one_label_y = np.argmax(raw_Y, axis=1)
 
-    raw_sss = StratifiedKFold(n_splits=num_fold, random_state=0)
+    raw_sss = StratifiedKFold(n_splits=num_fold, shuffle= False)
 
     raw_sss.get_n_splits(raw_data, one_label_y)
 
@@ -142,7 +144,7 @@ for fold in range(1, num_fold+1):
 
         if (raw_testing_ecg_corresponding_label[pred_label]): count+=1
 
-        '''
+        
         print(" Raw testing ECG shape: ", raw_testing_ecg.shape,
               "\n Snippet shape: ", hb[0].shape, 
               "\n R-peaks", rpeak_list,
@@ -155,7 +157,7 @@ for fold in range(1, num_fold+1):
               "\n Real Time Accuracy: ", count/ raw_testing_data.shape[0],
               "\n Inference Time: ",(end - start),
               "\n ###################################################")
-        '''
+        
 
     print(count/raw_testing_data.shape[0])
 

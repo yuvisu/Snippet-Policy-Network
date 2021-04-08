@@ -2,6 +2,7 @@ import os
 import ast
 import csv
 import glob
+import wfdb
 import pickle
 import scipy.io
 import numpy as np
@@ -25,12 +26,14 @@ def compute_label_aggregations(df, folder):
 def load_dataset(path, sampling_rate, release=False):
 
     # load and convert annotation data
-    Y = pd.read_csv(path+'icbeb_database.csv', index_col='ecg_id')
+    Y = pd.read_csv(path+'icbeb_database.csv', index_col='filename')
+
     Y.scp_codes = Y.scp_codes.apply(lambda x: ast.literal_eval(x))
 
     # Load raw signal data
     X = load_raw_data_icbeb(Y, sampling_rate, path)
 
+    
     return X, Y
 
 
@@ -57,7 +60,7 @@ def select_data(XX, YY, min_samples, outputfolder):
 
 
 def load_raw_data_icbeb(df, sampling_rate, path):
-
+    
     if sampling_rate == 100:
         if os.path.exists(path + 'raw100.npy'):
             data = np.load(path+'raw100.npy', allow_pickle=True)

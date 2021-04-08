@@ -13,3 +13,5 @@ unzip TrainingSet3.zip
 cd ..
 python util/convert_ICBEB.py
 cp data/scp_statements.csv data/ICBEB/
+#make sure the file order as same as the paper
+cp data/icbeb_database.csv data/ICBEB/

@@ -22,7 +22,7 @@ class Config():
     output_size: int = 9
 
     alpha: float = 0.3
-
+        
     beta: float = 0.001
 
     gamma: float = 0.5
