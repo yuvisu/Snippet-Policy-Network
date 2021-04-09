@@ -32,11 +32,11 @@ class Config():
     fold: int = 1
 
     # path
-    root_dir: str = "/home/waue0920/hugo/"
+    root_dir: str = "{set the root dir}"
 
     tmp_dir: str = "tmp"
         
-    data_dir: str = "ECG"
+    data_dir: str = "data"
 
     snippet_dir: str = "snippet"
 
@@ -52,7 +52,7 @@ class Config():
 
     dataset_name: str = "ICBEB"
 
-    snippet_name: str = "gamboa_norm_1000.pickle"
+    snippet_name: str = "christov_checkup.pickle"
         
     #segmenter
     

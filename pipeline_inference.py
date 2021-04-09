@@ -17,8 +17,6 @@ from sklearn.model_selection import StratifiedKFold
 from core.loss import FocalLoss
 from core.model import SnippetPolicyNetwork
 from config.spn_config import Config
-#import mkl
-#mkl.set_num_threads(3)
 torch.set_num_threads(3)
 
 from tqdm import tqdm
@@ -35,7 +33,7 @@ os.environ["CUDA_VISIBLE_DEVICES"] = "1"
 
 #load raw data
 
-config = Config(model_name="FIT-SPN-E0.01-B0.0001-(2144)", dataset_name = "ICBEB", segmenter = "christov")
+config = Config(model_name="{Set the model name}", dataset_name = "ICBEB", segmenter = "christov")
 
 raw_input_path = os.path.join(config.root_dir,
                               config.data_dir,
@@ -53,7 +51,8 @@ raw_data, raw_Y, raw_labels, classes = uio.load_formmated_raw_data(raw_input_pat
 # +
 num_fold = 10
 
-for fold in range(1, num_fold+1):
+#loop test the model, if 10-fold, set (1,num_fold+1)
+for fold in range(1, 2):
     one_label_y = np.argmax(raw_Y, axis=1)
 
     raw_sss = StratifiedKFold(n_splits=num_fold, shuffle= False)
@@ -87,8 +86,10 @@ for fold in range(1, num_fold+1):
     
     print(model_path)
 
-    model.load_state_dict(torch.load(model_path+"/model.pt"))
-
+    #model.load_state_dict(torch.load(model_path+"/model.pt"))
+    #set a fix path for demo
+    model.load_state_dict(torch.load("weights/model-fold-1.pt"))
+    
     model.cuda()
 
     model.eval()
