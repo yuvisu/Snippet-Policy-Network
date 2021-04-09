@@ -155,7 +155,7 @@ for fold in range(1, 2):
               "\n Predicted Label:", pred_label,
               "\n Ground Truth Label:", ground_truth,
               "\n Classified Result: ", pred_label == ground_truth,
-              "\n Real Time Accuracy: ", count/ raw_testing_data.shape[0],
+              "\n Real Time Accuracy: ", count/ (idx+1),
               "\n Inference Time: ",(end - start),
               "\n ###################################################")
         

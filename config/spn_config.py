@@ -32,7 +32,7 @@ class Config():
     fold: int = 1
 
     # path
-    root_dir: str = "{set the root dir}"
+    root_dir: str = "./" #{set the root dir}
 
     tmp_dir: str = "tmp"
         
