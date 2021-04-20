@@ -160,7 +160,7 @@ def execute(config, training_data, training_label, testing_data, testing_label,
                     testing_true.append(val.cpu().detach().numpy())
                     #if correct return the true label
                 else:
-                    testing_true.append(input_label[index].cpu().numpy())
+                    testing_true.append(testing_input_label[index].cpu().numpy())
                     #if incorrect return the true label
         
         testing_stopping_point_array = np.array(testing_stopping_point_array)
