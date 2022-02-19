@@ -161,7 +161,7 @@ class SnippetPolicyNetwork(nn.Module):
         R = torch.from_numpy(np.zeros((self.baselines.shape[0],self.baselines.shape[1]))).float().cuda()
         
         for idx in range(r.shape[0]):
-            R[idx][:self.tau_list[idx]] = r[idx]
+            R[idx][:self.tau_list[idx]+1] = r[idx]
                 
         # --- subtract baseline from reward ---
         adjusted_reward = R - self.baselines.detach()
