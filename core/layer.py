@@ -187,9 +187,7 @@ class Discriminator(nn.Module):
     def forward(self, h_t):
 
         y_hat = self.fc(h_t)
-        
-        y_hat = self.softmax(y_hat)
-        
+                
         return y_hat
 
 
