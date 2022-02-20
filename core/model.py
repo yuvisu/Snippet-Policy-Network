@@ -10,7 +10,7 @@ class SnippetPolicyNetwork(nn.Module):
 
     def __init__(self, input_size = 12, hidden_size = 256, hidden_output_size = 1, output_size = 9):
         super(SnippetPolicyNetwork, self).__init__()
-        self.loss_func = FocalLoss()
+        self.loss_func = FocalLoss() # It is the normal cross-entropy function, as the gamma is set to zero
         self.CELL_TYPE = "LSTM"
         self.INPUT_SIZE = input_size
         self.HIDDEN_SIZE = hidden_size
