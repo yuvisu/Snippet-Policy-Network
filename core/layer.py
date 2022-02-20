@@ -184,8 +184,6 @@ class Discriminator(nn.Module):
         
         self.fc = nn.Linear(input_size, output_size)
         
-        self.softmax = nn.LogSoftmax(dim=1)
-
     def forward(self, h_t):
 
         y_hat = self.fc(h_t)
