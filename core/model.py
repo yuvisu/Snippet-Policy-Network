@@ -151,7 +151,7 @@ class SnippetPolicyNetwork(nn.Module):
                 
         return y_hat, tau_list
 
-    def applyLoss(self, y_hat, labels, gamma = 0.3, beta = 0.001):
+    def applyLoss(self, y_hat, labels, gamma = 1, beta = 0.001):
         # --- compute reward ---
         _, predicted = torch.max(y_hat, 1)
         r = (predicted.float().detach() == labels.float()).float() #checking if it is correct
