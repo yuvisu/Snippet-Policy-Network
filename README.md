@@ -1,6 +1,6 @@
 # Snippet Policy Network
 
-This repository is the official implementation of [Snippet Policy Network for Multi-class Varied-length ECG Early Classification](https://ieeexplore.ieee.org/document/9741533), published at IEEE Transactions on Knowledge and Data Engineering.
+This repository is the official implementation of [Snippet Policy Network for Multi-class Varied-length ECG Early Classification](https://ieeexplore.ieee.org/document/9741533), published at IEEE Transactions on Knowledge and Data Engineering. Feel free to contact me via this email (yuvisu.cs04g@nctu.edu.tw) if you get any problems.
 
 ### Guideline:
 
