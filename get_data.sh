@@ -1,5 +1,5 @@
 ####################################
-#   GET ICBEB 2018 DATABASE
+#   GET ICBEB 2018 (CPSC 2018) DATABASE
 ####################################
 mkdir -p tmp_data
 cd tmp_data
